@@ -18,7 +18,8 @@ class Fahrenheit implements UnitInterface
      */
     public function toBase($value)
     {
-        return $value;
+        // Deduct 32, then multiply by 5, then divide by 9
+        return ($value - 32) * 5 / 9;
     }
 
     /**
@@ -30,6 +31,7 @@ class Fahrenheit implements UnitInterface
      */
     public function fromBase($value)
     {
-        return 1;
+        // Multiply by 9, then divide by 5, then add 32
+        return ($value * 9 / 5) + 32;
     }
 }
