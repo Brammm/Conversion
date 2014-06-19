@@ -16,7 +16,7 @@ class UnitFactory
     public static function getUnit($unit)
     {
         switch ($unit) {
-            // weight
+            // WEIGHT
             case Weight\Gram::SYMBOL:
                 return new Weight\Gram();
             break;
@@ -35,6 +35,7 @@ class UnitFactory
             case Weight\Pound::SYMBOL:
                 return new Weight\Pound();
             break;
+            // TEMPERATURE
             case Temperature\Celsius::SYMBOL:
                 return new Temperature\Celsius();
             break;
