@@ -8,13 +8,13 @@ class Pound implements UnitInterface
 {
     const SYMBOL = 'lb';
 
-    public function toBase()
+    public function toBase($value)
     {
-        return 453.6;
+        return $value * 453.6;
     }
 
-    public function fromBase()
+    public function fromBase($value)
     {
-        return 0.002205;
+        return $value * 0.002205;
     }
 }

@@ -8,13 +8,13 @@ class Gram implements UnitInterface
 {
     const SYMBOL = 'g';
 
-    public function toBase()
+    public function toBase($value)
     {
-        return 1;
+        return $value;
     }
 
-    public function fromBase()
+    public function fromBase($value)
     {
-        return 1;
+        return $value;
     }
 }

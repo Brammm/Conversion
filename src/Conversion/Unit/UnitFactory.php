@@ -35,6 +35,15 @@ class UnitFactory
             case Weight\Pound::SYMBOL:
                 return new Weight\Pound();
             break;
+            case Temperature\Celsius::SYMBOL:
+                return new Temperature\Celsius();
+            break;
+            case Temperature\Fahrenheit::SYMBOL:
+                return new Temperature\Fahrenheit();
+            break;
+            case Temperature\Kelvin::SYMBOL:
+                return new Temperature\Kelvin();
+            break;
             default:
                throw new \InvalidArgumentException(sprintf('Unit "%s" not recognized'));
         }

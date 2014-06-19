@@ -8,13 +8,13 @@ class Microgram implements UnitInterface
 {
     const SYMBOL = 'ug';
 
-    public function toBase()
+    public function toBase($value)
     {
-        return 0.000001;
+        return $value * 0.000001;
     }
 
-    public function fromBase()
+    public function fromBase($value)
     {
-        return 1000000;
+        return $value * 1000000;
     }
 }

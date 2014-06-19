@@ -12,7 +12,10 @@ class Converter
         $unitFrom = UnitFactory::getUnit($fromUnit);
         $unitTo   = UnitFactory::getUnit($toUnit);
 
-        $converted = $value * $unitFrom->toBase() * $unitTo->fromBase();
+        // TODO: validate unitfrom and unitto belong to same category (weight, temp...)
+
+        $base = $unitFrom->toBase($value);
+        $converted = $unitTo->fromBase($base);
 
         return $converted;
     }

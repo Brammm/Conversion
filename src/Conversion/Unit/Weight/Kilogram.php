@@ -8,13 +8,13 @@ class Kilogram implements UnitInterface
 {
     const SYMBOL = 'kg';
 
-    public function toBase()
+    public function toBase($value)
     {
-        return 1000;
+        return $value * 1000;
     }
 
-    public function fromBase()
+    public function fromBase($value)
     {
-        return 0.001;
+        return $value * 0.001;
     }
 }

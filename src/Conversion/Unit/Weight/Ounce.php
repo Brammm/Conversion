@@ -8,13 +8,13 @@ class Ounce implements UnitInterface
 {
     const SYMBOL = 'oz';
 
-    public function toBase()
+    public function toBase($value)
     {
-        return 28.35;
+        return $value * 28.35;
     }
 
-    public function fromBase()
+    public function fromBase($value)
     {
-        return 0.03527;
+        return $value * 0.03527;
     }
 }
