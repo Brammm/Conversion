@@ -4,17 +4,17 @@ namespace Conversion\Unit\Weight;
 
 use Conversion\Unit\UnitInterface;
 
-class Gram implements UnitInterface
+class Pound implements UnitInterface
 {
-    const SYMBOL = 'g';
+    const SYMBOL = 'lb';
 
     public function toBase()
     {
-        return 1;
+        return 453.6;
     }
 
     public function fromBase()
     {
-        return 1;
+        return 0.002205;
     }
 }

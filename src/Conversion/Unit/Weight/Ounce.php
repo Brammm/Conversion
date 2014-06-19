@@ -4,17 +4,17 @@ namespace Conversion\Unit\Weight;
 
 use Conversion\Unit\UnitInterface;
 
-class Gram implements UnitInterface
+class Ounce implements UnitInterface
 {
-    const SYMBOL = 'g';
+    const SYMBOL = 'oz';
 
     public function toBase()
     {
-        return 1;
+        return 28.35;
     }
 
     public function fromBase()
     {
-        return 1;
+        return 0.03527;
     }
 }

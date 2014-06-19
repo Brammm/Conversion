@@ -4,17 +4,17 @@ namespace Conversion\Unit\Weight;
 
 use Conversion\Unit\UnitInterface;
 
-class Gram implements UnitInterface
+class Kilogram implements UnitInterface
 {
-    const SYMBOL = 'g';
+    const SYMBOL = 'kg';
 
     public function toBase()
     {
-        return 1;
+        return 1000;
     }
 
     public function fromBase()
     {
-        return 1;
+        return 0.001;
     }
 }

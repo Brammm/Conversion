@@ -4,17 +4,17 @@ namespace Conversion\Unit\Weight;
 
 use Conversion\Unit\UnitInterface;
 
-class Gram implements UnitInterface
+class Microgram implements UnitInterface
 {
-    const SYMBOL = 'g';
+    const SYMBOL = 'ug';
 
     public function toBase()
     {
-        return 1;
+        return 0.000001;
     }
 
     public function fromBase()
     {
-        return 1;
+        return 1000000;
     }
 }
