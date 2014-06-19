@@ -45,7 +45,7 @@ class UnitFactory
                 return new Temperature\Kelvin();
             break;
             default:
-               throw new \InvalidArgumentException(sprintf('Unit "%s" not recognized'));
+               throw new \InvalidArgumentException(sprintf('Unit "%s" not recognized', $unit));
         }
     }
 } 
