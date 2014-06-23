@@ -20,9 +20,9 @@ $loader = require_once __DIR__.'/vendor/autoload.php';
 //echo sprintf("%.2f %s is %.2f %s\n", $value, $unitFrom, $converted, $unitTo);
 //
 
+use Conversion\Console\Application\ConvertApplication;
 use Conversion\Console\Command\ConvertCommand;
-use Symfony\Component\Console\Application;
 
-$application = new Application();
+$application = new ConvertApplication();
 $application->add(new ConvertCommand());
 $application->run();
