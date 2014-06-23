@@ -46,18 +46,17 @@ class ConvertCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $value    = $input->getArgument('value');
-        $unitFrom = $input->getArgument('unitFrom');
-        $unitTo   = $input->getArgument('unitTo');
+        $converted = $this->converter
+            ->from($input->getArgument('unitFrom'))
+            ->to($input->getArgument('unitTo'))
+            ->convert($input->getArgument('value'));
 
-
-        $converted = $this->converter->convert(
-            $value,
-            $unitFrom,
-            $unitTo
-        );
-
-
-        $output->writeln(sprintf('%.2f %s is %.2f %s', $value, $unitFrom, $converted, $unitTo));
+        $output->writeln(sprintf(
+            '%.2f %s is %.2f %s',
+            $input->getArgument('value'),
+            $input->getArgument('unitFrom'),
+            $converted,
+            $input->getArgument('unitTo')
+        ));
     }
 } 

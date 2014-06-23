@@ -8,6 +8,11 @@ use Conversion\Unit\UnitInterface;
 class Converter
 {
 
+    /** @var UnitInterface */
+    private $unitFrom;
+    /** @var UnitInterface */
+    private $unitTo;
+
     /** @var UnitRegistry */
     private $registry;
 
@@ -17,23 +22,44 @@ class Converter
     }
 
     /**
+     * Sets from which unit you wish to convert
+     *
+     * @param $symbol
+     *
+     * @return $this
+     */
+    public function from($symbol)
+    {
+        $this->unitFrom = $this->registry->getUnit($symbol);
+        return $this;
+    }
+
+    /**
+     * Sets to which unit you wish to convert
+     *
+     * @param $symbol
+     *
+     * @return $this
+     */
+    public function to($symbol)
+    {
+        $this->unitTo = $this->registry->getUnit($symbol);
+        return $this;
+    }
+
+    /**
      * Converts a value from one unit to another
      *
      * @param $value
-     * @param $fromUnit
-     * @param $toUnit
      *
      * @return float
      */
-    public function convert($value, $fromUnit, $toUnit)
+    public function convert($value)
     {
-        $unitFrom = $this->registry->getUnit($fromUnit);
-        $unitTo   = $this->registry->getUnit($toUnit);
+        $this->protectInvalidConversion();
 
-        $this->protectInvalidConversion($unitFrom, $unitTo);
-
-        $base      = $unitFrom->toBase($value);
-        $converted = $unitTo->fromBase($base);
+        $base      = $this->unitFrom->toBase($value);
+        $converted = $this->unitTo->fromBase($base);
 
         return $converted;
     }
@@ -41,13 +67,21 @@ class Converter
     /**
      * Checks if the conversion is valid
      *
-     * @param UnitInterface $unitFrom
-     * @param UnitInterface $unitTo
+     * @throws \LogicException
+     * @throws \InvalidArgumentException
      */
-    public function protectInvalidConversion(UnitInterface $unitFrom, UnitInterface $unitTo)
+    public function protectInvalidConversion()
     {
-        if ($unitFrom->converts() !== $unitTo->converts()) {
-            throw new \InvalidArgumentException(sprintf("Can't convert from %s to %s", $unitFrom->converts(), $unitTo->converts()));
+        if (null === $this->unitTo || null === $this->unitFrom) {
+            throw new \LogicException('Please set which units you want to convert from or to');
+        }
+
+        if ($this->unitFrom->converts() !== $this->unitTo->converts()) {
+            throw new \InvalidArgumentException(sprintf(
+                "Can't convert from %s to %s",
+                $this->unitFrom->converts(),
+                $this->unitTo->converts()
+            ));
         }
     }
 
