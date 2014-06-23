@@ -2,6 +2,7 @@
 
 namespace Conversion\Console\Command;
 
+use Conversion\Converter\Converter;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -38,6 +39,15 @@ class ConvertCommand extends Command
         $unitFrom = $input->getArgument('unitFrom');
         $unitTo   = $input->getArgument('unitTo');
 
-        $output->writeln('test');
+
+        $converter = new Converter();
+        $converted = $converter->convert(
+            $value,
+            $unitFrom,
+            $unitTo
+        );
+
+
+        $output->writeln(sprintf('%.2f %s is %.2f %s', $value, $unitFrom, $converted, $unitTo));
     }
 } 
