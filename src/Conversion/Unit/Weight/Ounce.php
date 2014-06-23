@@ -6,13 +6,34 @@ use Conversion\Unit\UnitInterface;
 
 class Ounce implements UnitInterface
 {
-    const SYMBOL = 'oz';
 
+    /**
+     * {@inheritDoc}
+     */
+    public function converts()
+    {
+        return UnitInterface::WEIGHT;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function supports($symbol)
+    {
+        return 'oz' === $symbol;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function toBase($value)
     {
         return $value * 28.35;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function fromBase($value)
     {
         return $value * 0.03527;

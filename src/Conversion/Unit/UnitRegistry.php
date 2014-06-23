@@ -7,46 +7,38 @@ use Conversion\Unit;
 class UnitRegistry
 {
 
+    /** @var UnitInterface[] */
+    private $units; 
+    
+    public function __construct()
+    {
+        $this->units = [
+            new Weight\Gram(),
+            new Weight\Kilogram(),
+            new Weight\Milligram(),
+            new Weight\Microgram(),
+            new Weight\Ounce(),
+            new Weight\Pound(),
+            new Temperature\Celsius(),
+            new Temperature\Fahrenheit(),
+            new Temperature\Kelvin(),
+        ];
+    }
+    
     /**
-     * @param $unit
+     * @param $symbol
      *
      * @return UnitInterface
      * @throws \InvalidArgumentException
      */
-    public function getUnit($unit)
+    public function getUnit($symbol)
     {
-        switch ($unit) {
-            // WEIGHT
-            case Weight\Gram::SYMBOL:
-                return new Weight\Gram();
-            break;
-            case Weight\Kilogram::SYMBOL:
-                return new Weight\Kilogram();
-            break;
-            case Weight\Milligram::SYMBOL:
-                return new Weight\Milligram();
-            break;
-            case Weight\Microgram::SYMBOL:
-                return new Weight\Microgram();
-            break;
-            case Weight\Ounce::SYMBOL:
-                return new Weight\Ounce();
-            break;
-            case Weight\Pound::SYMBOL:
-                return new Weight\Pound();
-            break;
-            // TEMPERATURE
-            case Temperature\Celsius::SYMBOL:
-                return new Temperature\Celsius();
-            break;
-            case Temperature\Fahrenheit::SYMBOL:
-                return new Temperature\Fahrenheit();
-            break;
-            case Temperature\Kelvin::SYMBOL:
-                return new Temperature\Kelvin();
-            break;
-            default:
-               throw new \InvalidArgumentException(sprintf('Unit "%s" not recognized', $unit));
+        foreach ($this->units as $unit) {
+            if ($unit->supports($symbol)) {
+                return $unit;
+            }
         }
+
+        throw new \InvalidArgumentException(sprintf('Unit "%s" not recognized', $symbol));
     }
 } 

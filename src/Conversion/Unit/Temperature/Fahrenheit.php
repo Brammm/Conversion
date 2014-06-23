@@ -7,14 +7,24 @@ use Conversion\Unit\UnitInterface;
 class Fahrenheit implements UnitInterface
 {
 
-    const SYMBOL = 'F';
+    /**
+     * {@inheritDoc}
+     */
+    public function converts()
+    {
+        return UnitInterface::TEMPERATURE;
+    }
 
     /**
-     * The calculation needed to get to a base value
-     *
-     * @param $value
-     *
-     * @return float
+     * {@inheritDoc}
+     */
+    public function supports($symbol)
+    {
+        return 'F' === $symbol;
+    }
+
+    /**
+     * {@inheritDoc}
      */
     public function toBase($value)
     {
@@ -23,11 +33,7 @@ class Fahrenheit implements UnitInterface
     }
 
     /**
-     * The calculation needed to go from base value to unit
-     *
-     * @param $value
-     *
-     * @return float
+     * {@inheritDoc}
      */
     public function fromBase($value)
     {

@@ -7,12 +7,24 @@ use Conversion\Unit\UnitInterface;
 class Kelvin implements UnitInterface
 {
 
-    const SYMBOL = 'K';
+    /**
+     * {@inheritDoc}
+     */
+    public function converts()
+    {
+        return UnitInterface::TEMPERATURE;
+    }
 
     /**
-     * The calculation needed to get to a base value
-     *
-     * @return float
+     * {@inheritDoc}
+     */
+    public function supports($symbol)
+    {
+        return 'K' === $symbol;
+    }
+
+    /**
+     * {@inheritDoc}
      */
     public function toBase($value)
     {
@@ -20,9 +32,7 @@ class Kelvin implements UnitInterface
     }
 
     /**
-     * The calculation needed to go from base value to unit
-     *
-     * @return float
+     * {@inheritDoc}
      */
     public function fromBase($value)
     {

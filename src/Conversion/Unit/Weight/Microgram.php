@@ -6,13 +6,34 @@ use Conversion\Unit\UnitInterface;
 
 class Microgram implements UnitInterface
 {
-    const SYMBOL = 'ug';
 
+    /**
+     * {@inheritDoc}
+     */
+    public function converts()
+    {
+        return UnitInterface::WEIGHT;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function supports($symbol)
+    {
+        return 'ug' === $symbol;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function toBase($value)
     {
         return $value * 0.000001;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function fromBase($value)
     {
         return $value * 1000000;

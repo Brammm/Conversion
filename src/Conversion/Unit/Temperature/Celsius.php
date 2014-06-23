@@ -6,12 +6,25 @@ use Conversion\Unit\UnitInterface;
 
 class Celsius implements UnitInterface
 {
-    const SYMBOL = 'C';
 
     /**
-     * The calculation needed to get to a base value
-     *
-     * @return float
+     * {@inheritDoc}
+     */
+    public function converts()
+    {
+        return UnitInterface::TEMPERATURE;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function supports($symbol)
+    {
+        return 'C' === $symbol;
+    }
+
+    /**
+     * {@inheritDoc}
      */
     public function toBase($value)
     {
@@ -19,9 +32,7 @@ class Celsius implements UnitInterface
     }
 
     /**
-     * The calculation needed to go from base value to unit
-     *
-     * @return float
+     * {@inheritDoc}
      */
     public function fromBase($value)
     {

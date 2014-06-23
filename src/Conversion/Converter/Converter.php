@@ -46,12 +46,8 @@ class Converter
      */
     public function protectInvalidConversion(UnitInterface $unitFrom, UnitInterface $unitTo)
     {
-
-        $categoryFrom = explode('\\', get_class($unitFrom))[2];
-        $categoryTo   = explode('\\', get_class($unitTo))[2];
-
-        if ($categoryFrom !== $categoryTo) {
-            throw new \InvalidArgumentException(sprintf("Can't convert from %s to %s", $categoryFrom, $categoryTo));
+        if ($unitFrom->converts() !== $unitTo->converts()) {
+            throw new \InvalidArgumentException(sprintf("Can't convert from %s to %s", $unitFrom->converts(), $unitTo->converts()));
         }
     }
 

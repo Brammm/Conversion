@@ -10,6 +10,25 @@ namespace Conversion\Unit;
 interface UnitInterface
 {
 
+    const WEIGHT      = 'weight';
+    const TEMPERATURE = 'temperature';
+    const LENGTH      = 'length';
+    const ANGLE       = 'angle';
+
+    /**
+     * Tells which type of unit the instance can convert (weight, temperature...)
+     *
+     * @return string
+     */
+    public function converts();
+
+    /**
+     * Returns true or false if the instance supports the symbol
+     *
+     * @return bool
+     */
+    public function supports($symbol);
+
     /**
      * The calculation needed to get to a base value
      *
