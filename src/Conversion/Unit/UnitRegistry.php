@@ -13,16 +13,21 @@ class UnitRegistry
     public function __construct()
     {
         $this->units = [
-            new Weight\Gram(),
-            new Weight\Kilogram(),
-            new Weight\Milligram(),
-            new Weight\Microgram(),
-            new Weight\Ounce(),
-            new Weight\Pound(),
-            new Temperature\Celsius(),
-            new Temperature\Fahrenheit(),
-            new Temperature\Kelvin(),
+            'g'  => new Weight\Gram(),
+            'kg' => new Weight\Kilogram(),
+            'mg' => new Weight\Milligram(),
+            'ug' => new Weight\Microgram(),
+            'oz' => new Weight\Ounce(),
+            'lb' => new Weight\Pound(),
+            'C'  => new Temperature\Celsius(),
+            'F'  => new Temperature\Fahrenheit(),
+            'K'  => new Temperature\Kelvin(),
         ];
+    }
+
+    public function addUnit($symbol, UnitInterface $unit)
+    {
+        $this->units[$symbol] = $unit;
     }
     
     /**
@@ -33,10 +38,8 @@ class UnitRegistry
      */
     public function getUnit($symbol)
     {
-        foreach ($this->units as $unit) {
-            if ($unit->supports($symbol)) {
-                return $unit;
-            }
+        if (isset($this->units[$symbol])) {
+            return $this->units[$symbol];
         }
 
         throw new \InvalidArgumentException(sprintf('Unit "%s" not recognized', $symbol));

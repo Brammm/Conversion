@@ -23,13 +23,6 @@ interface UnitInterface
     public function converts();
 
     /**
-     * Returns true or false if the instance supports the symbol
-     *
-     * @return bool
-     */
-    public function supports($symbol);
-
-    /**
      * The calculation needed to get to a base value
      *
      * @param $value

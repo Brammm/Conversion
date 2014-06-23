@@ -18,14 +18,6 @@ class Gram implements UnitInterface
     /**
      * {@inheritDoc}
      */
-    public function supports($symbol)
-    {
-        return 'g' === $symbol;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function toBase($value)
     {
         return $value;

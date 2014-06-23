@@ -18,14 +18,6 @@ class Pound implements UnitInterface
     /**
      * {@inheritDoc}
      */
-    public function supports($symbol)
-    {
-        return 'lb' === $symbol;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function toBase($value)
     {
         return $value * 453.6;

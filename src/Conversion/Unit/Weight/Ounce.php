@@ -18,14 +18,6 @@ class Ounce implements UnitInterface
     /**
      * {@inheritDoc}
      */
-    public function supports($symbol)
-    {
-        return 'oz' === $symbol;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function toBase($value)
     {
         return $value * 28.35;

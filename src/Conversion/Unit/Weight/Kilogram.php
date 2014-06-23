@@ -18,14 +18,6 @@ class Kilogram implements UnitInterface
     /**
      * {@inheritDoc}
      */
-    public function supports($symbol)
-    {
-        return 'kg' === $symbol;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function toBase($value)
     {
         return $value * 1000;

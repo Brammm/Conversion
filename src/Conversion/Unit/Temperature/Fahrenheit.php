@@ -18,14 +18,6 @@ class Fahrenheit implements UnitInterface
     /**
      * {@inheritDoc}
      */
-    public function supports($symbol)
-    {
-        return 'F' === $symbol;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function toBase($value)
     {
         // Deduct 32, then multiply by 5, then divide by 9
