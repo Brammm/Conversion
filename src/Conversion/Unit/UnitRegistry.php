@@ -8,8 +8,11 @@ class UnitRegistry
 {
 
     /** @var UnitInterface[] */
-    private $units; 
-    
+    private $units;
+
+    /**
+     * Defines default units
+     */
     public function __construct()
     {
         $this->units = [
@@ -25,6 +28,10 @@ class UnitRegistry
         ];
     }
 
+    /**
+     * @param string        $symbol
+     * @param UnitInterface $unit
+     */
     public function addUnit($symbol, UnitInterface $unit)
     {
         $this->units[$symbol] = $unit;
