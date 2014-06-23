@@ -1,0 +1,3 @@
+services:
+    conversion.command:
+        class: Conversion\Console\Command\ConvertCommand

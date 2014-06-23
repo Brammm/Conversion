@@ -2,9 +2,11 @@
 
 namespace Conversion\Console\Application;
 
-use Conversion\Console\Command\ConvertCommand;
+use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 class ConvertApplication extends Application
 {
@@ -17,7 +19,11 @@ class ConvertApplication extends Application
     {
         $defaultCommands = parent::getDefaultCommands();
 
-        $defaultCommands[] = new ConvertCommand();
+        $container = new ContainerBuilder();
+        $loader = new YamlFileLoader($container, new FileLocator(__DIR__));
+        $loader->load('../../../../resources/services.yml');
+
+        $defaultCommands[] = $container->get('conversion.command');
 
         return $defaultCommands;
     }
