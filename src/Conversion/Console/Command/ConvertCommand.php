@@ -3,6 +3,7 @@
 namespace Conversion\Console\Command;
 
 use Conversion\Converter\Converter;
+use Conversion\Unit\UnitRegistry;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -10,6 +11,16 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class ConvertCommand extends Command
 {
+    /** @var Converter */
+    private $converter;
+
+    public function __construct(Converter $converter)
+    {
+        $this->converter = $converter;
+
+        parent::__construct();
+    }
+
     protected function configure()
     {
         $this
@@ -40,8 +51,7 @@ class ConvertCommand extends Command
         $unitTo   = $input->getArgument('unitTo');
 
 
-        $converter = new Converter();
-        $converted = $converter->convert(
+        $converted = $this->converter->convert(
             $value,
             $unitFrom,
             $unitTo

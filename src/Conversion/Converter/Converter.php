@@ -2,11 +2,19 @@
 
 namespace Conversion\Converter;
 
-use Conversion\Unit\UnitFactory;
+use Conversion\Unit\UnitRegistry;
 use Conversion\Unit\UnitInterface;
 
 class Converter
 {
+
+    /** @var UnitRegistry */
+    private $registry;
+
+    function __construct(UnitRegistry $registry)
+    {
+        $this->registry = $registry;
+    }
 
     /**
      * Converts a value from one unit to another
@@ -19,8 +27,8 @@ class Converter
      */
     public function convert($value, $fromUnit, $toUnit)
     {
-        $unitFrom = UnitFactory::getUnit($fromUnit);
-        $unitTo   = UnitFactory::getUnit($toUnit);
+        $unitFrom = $this->registry->getUnit($fromUnit);
+        $unitTo   = $this->registry->getUnit($toUnit);
 
         $this->protectInvalidConversion($unitFrom, $unitTo);
 

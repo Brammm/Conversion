@@ -2,14 +2,22 @@
 
 namespace Conversion\Console\Application;
 
-use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class ConvertApplication extends Application
 {
+    /** @var ContainerInterface */
+    private $container;
+
+    public function __construct(ContainerInterface $container, $name = 'UNKNOWN', $version = 'UNKNOWN')
+    {
+        $this->container = $container;
+        parent::__construct($name, $version);
+    }
+
+
     protected function getCommandName(InputInterface $input)
     {
         return 'convert';
@@ -19,11 +27,7 @@ class ConvertApplication extends Application
     {
         $defaultCommands = parent::getDefaultCommands();
 
-        $container = new ContainerBuilder();
-        $loader = new YamlFileLoader($container, new FileLocator(__DIR__));
-        $loader->load('../../../../resources/services.yml');
-
-        $defaultCommands[] = $container->get('conversion.command');
+        $defaultCommands[] = $this->container->get('conversion.command');
 
         return $defaultCommands;
     }
@@ -36,5 +40,4 @@ class ConvertApplication extends Application
         return $inputDefinition;
     }
 
-
-} 
+}

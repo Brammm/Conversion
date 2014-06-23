@@ -4,7 +4,7 @@ namespace Conversion\Unit;
 
 use Conversion\Unit;
 
-class UnitFactory
+class UnitRegistry
 {
 
     /**
@@ -13,7 +13,7 @@ class UnitFactory
      * @return UnitInterface
      * @throws \InvalidArgumentException
      */
-    public static function getUnit($unit)
+    public function getUnit($unit)
     {
         switch ($unit) {
             // WEIGHT

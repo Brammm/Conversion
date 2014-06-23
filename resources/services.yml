@@ -1,3 +1,11 @@
 services:
+    conversion.converter:
+        class: Conversion\Converter\Converter
+        arguments: ["@conversion.unit_registry"]
+
     conversion.command:
         class: Conversion\Console\Command\ConvertCommand
+        arguments: ["@conversion.converter"]
+
+    conversion.unit_registry:
+        class: Conversion\Unit\UnitRegistry
